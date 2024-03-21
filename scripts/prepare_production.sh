@@ -80,10 +80,11 @@ Error = ${SUBSCRIPT}.\$(Cluster)_\$(Process).error
 Log = ${SUBSCRIPT}.\$(Cluster)_\$(Process).log
 request_memory = 4000M
 getenv = True
-max_materialize = 250
+max_materialize = 350
 queue 1
 EOL
 # priority = 15
+# requirements='OpSysAndVer=="AlmaLinux9"'
 }
 
 # return string with CARE configs
