@@ -314,3 +314,4 @@ VTS-SimPipe is able to use the same optimized CORSIKA, thanks to for Luisa Arrab
 
 - default Coconut C compile flags (VTS-SimPipe): `cc -DHAVE_CONFIG_H -I. -I../include  -DMAX_IO_BUFFER=200000000 -DCORSIKA_VERSION=77500   -g -D_FILE_OFFSET_BITS=64 -MT libiact_a-eventio.o -MD -MP -MF .deps/libiact_a-eventio.Tpo -c -o libiact_a-eventio.o `test -f 'eventio.c'` (**no optimisation at all?**)
 - VTS-noopt compile flags: `cc -DHAVE_CONFIG_H -I. -I../include  -DMAX_IO_BUFFER=200000000 -DCORSIKA_VERSION=77500   -std=c99 -O3 -MT libiact_a-eventio.o -MD -MP -MF .deps/libiact_a-eventio.Tpo -c -o libiact_a-eventio.o `test -f 'eventio.c'
+- [CTAO gitlab repository for optimized CORSIKA](https://gitlab.cta-observatory.org/cta-computing/dpps/workload/production-configurations/-/tree/master/utils/build_opt?ref_type=heads)

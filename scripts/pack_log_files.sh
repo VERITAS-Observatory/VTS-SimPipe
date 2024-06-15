@@ -24,7 +24,8 @@ cd "${PDIR}"
 for DIR in $DLIST; do
     echo $DIR
     if [ -e $DIR ]; then
-        rm -f logs_${DIR}.tar.gz
-        find ${DIR} -type f -name "*.log" -exec tar -rf logs_${DIR}.tar.gz {} +
+        rm -f logs_${DIR}.tar
+        find ${DIR} -type f -name "*.log" -exec bzip2 -v {} \;
+        find ${DIR} -type f -name "*.log.bz2" -exec tar -rf logs_${DIR}.tar {} +
     fi
 done

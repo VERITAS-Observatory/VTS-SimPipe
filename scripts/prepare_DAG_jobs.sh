@@ -52,6 +52,9 @@ for ID in $(seq 0 "$N_RUNS"); do
         echo "VARS CORSIKA_${run_number} run_number=\"${run_number}\""
     } >> "$DAG_FILE"
     PARENT_CORSIKA="PARENT CORSIKA_${run_number} CHILD"
+    #
+    # PRE-Script for log directories
+    echo "SCRIPT PRE CORSIKA_${run_number} $(pwd)/make_log_directories.sh "$VTSSIMPIPE_LOG_DIR"/"$DIRSUFF" ${run_number}" >> "$DAG_FILE"
 
     # CLEANUP
     PARENT_CLEANUP="PARENT"

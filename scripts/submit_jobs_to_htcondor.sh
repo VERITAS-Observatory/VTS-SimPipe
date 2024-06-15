@@ -44,9 +44,9 @@ if ls "${JDIR}"/*.condor 1> /dev/null 2>&1; then
         grep -h request_memory "$CONDORFILE" || echo "request_memory = 2000M";
         echo "getenv = True";
         grep -h max_materialize "$CONDORFILE" || echo "max_materialize = 250";
+        echo "priority = 150"
         echo "queue file matching files *.sh";
     } >> "${SUBMITF}"
-    # echo "priority = 150"
 
     PDIR=$(pwd)
     if [ "${2}" = "submit" ]; then
