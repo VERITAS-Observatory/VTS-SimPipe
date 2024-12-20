@@ -51,7 +51,7 @@ cd scripts
 ./submit_jobs_to_htcondor.sh <directory with condor files / submission scripts> submit
 # now wait....for jobs to finish
 # merge vbf files
-./prepare_production.sh ../config/config_ATM61_template.dat
+./prepare_production.sh MERGEVBF ../config/config_ATM61_template.dat
 ./submit_jobs_to_htcondor.sh <directory with condor files for mergeVBF> submit
 # that's it
 ```
@@ -192,7 +192,7 @@ Processing scripts are prepared for HT Condor systems.
 - job submission for the HT Condor system is done with [scripts/submit_jobs_to_htcondor.sh](scripts/submit_jobs_to_htcondor.sh).
 - production scripts for all steps can be prepared with [scripts/prepare_all_production_steps.sh](scripts/prepare_all_production_steps.sh).
 - DAG submission is done with [scripts/submit_DAG_jobs.sh](scripts/submit_DAG_jobs.sh).
-- note that the `MERGEVBF` step is not included in the DAG submission, as it combines all runs of a production. Run this as a final step at the ned of the production.
+- note that the `MERGEVBF` step is not included in the DAG submission, as it combines all runs of a production. Run this as a final step at the end of the production.
 
 Note that configuration and output directories are fine tuned for this setup.
 The preparation of the all temporary submission scripts is not very efficient in both time and number of files written (could be significantly improved).
