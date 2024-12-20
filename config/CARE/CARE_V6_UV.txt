@@ -1,13 +1,13 @@
 #Original file name: CARE_VERITAS_AfterPMTUpgrade_V6_UV_20150606.txt
 #SG 2015/06/04:
-#reduced winston cone light yeild on all four telescopes by factor of 1.15
+#reduced winston cone light yield on all four telescopes by factor of 1.15
 # e.g. "TLCFG 0  1 0 0 0.93  0.765  0.0" is now  "TLCFG 0  1 0 0 0.93  0.665  0.0"
 
 #SG 2015/05/29:
 #added SCHOTT UG11 filter transmission
 #filter transmission from SCHOTT tool; reflection factor 0.91 applied.
 
-#added Winston Cone Efficiency of 765% per email fom Jonathan
+#added Winston Cone Efficiency of 765% per email from Jonathan
 
 #changed hi/lo switch from
 
@@ -71,7 +71,7 @@
 #each pulse shape starts with a two column line. The first number gives the signal amplitude at the
 #FADC in mV if the response of the system would be truly linear. The second number in the first line
 #gives the non-linearity at this expected amplitude: non-linearity = measured amplitude / expected amplitude
-# all following lines are two column. 1. colum: time  2. column: amplitude. The signal is expected to have a
+# all following lines are two column. 1. column: time  2. column: amplitude. The signal is expected to have a
 # negative amplitude.
 #The pulse shape ends with a line consisting only of the symbol *
 #note that the order of the pulse shapes in the file are with increasing signal amplitude, i.e. the pulse shape for
@@ -152,7 +152,7 @@
 #TELESCOPE TRIGGER CONFIGURATION
 ######################################################
 
-# use trigger subfields, i.e. the trigger area  is not homogenous
+# use trigger subfields, i.e. the trigger area  is not homogeneous
 # the trigger topology has to be defined with the PATCH command
 * USETRIGGERSUBFIELDS 0 1
 
@@ -276,7 +276,7 @@
 #--------------------------------------------------
 #Simulate a bias curve
 
-#Defines wether we want to calculate a bias curve
+#Defines whether we want to calculate a bias curve
 * MAKEBIASCURVE 0
 
 #Which telescope type do we want to use
@@ -321,7 +321,7 @@
 * DAYOFSIMULATEDEVENTS 2012-09-01
 
 #The number of pedestal events to simulate
-* NUMBERPEDESTALEVENTS 10
+* NUMBERPEDESTALEVENTS 100
 
 #The number of pedestal events to simulate to stabilize the discriminator
 * NUMBERPEDESTALEVENTSTOSTABILZE 20
@@ -337,10 +337,10 @@
 #   -the relative gain of the telescope
 #   -the Winston Cone efficiency can be modified to adjust
 #    the total optical throughput of that specific telescope
-#   -the sigma by which the optical psf is blured [mm]
+#   -the sigma by which the optical psf is blurred [mm]
 #    Add additional bluring of optical PSF. The position of the photon will be reevaluated by adding
 #    a random shift  x = x + 1/sqrt(2 pi sigma^2)e(-x_rand^2/(2sigma^2) and the same in y
-#    the sigma of the Gaussians in mm by which the optical PSF should be blured in addition
+#    the sigma of the Gaussians in mm by which the optical PSF should be blurred in addition
 #    if the sigma is <=0 no blurring is used
 
 
@@ -448,7 +448,7 @@
 #Configuration of the Camera
 
 #Pixel configuration, last three numbers are not used
-# teltype| what kind of pixel 1=square, 0=hexagonal| pixel id| x[mm]| y[mm] | pixel radius [mm] (distance from center to farthest corner) | roation angle
+# teltype| what kind of pixel 1=square, 0=hexagonal| pixel id| x[mm]| y[mm] | pixel radius [mm] (distance from center to farthest corner) | rotation angle
 
 * PMPIX 0 0 0    0          0.00        0.00 18.1 0.0
 * PMPIX 0 0 0    1         31.40       -0.00 18.1 0.0
