@@ -93,7 +93,6 @@ request_memory = 8000M
 getenv = True
 max_materialize = 2000
 queue 1
-# requirements='OpSysAndVer=="AlmaLinux9"'
 EOL
     fi
 }
