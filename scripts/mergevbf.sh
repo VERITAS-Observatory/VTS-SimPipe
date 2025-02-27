@@ -51,7 +51,7 @@ generate_mergevbf_submission_script()
         CARE_EXE="apptainer exec --cleanenv ${CONTAINER_EXTERNAL_DIR//-v/--bind} ${VTSSIMPIPE_CONTAINER_DIR}/${VTSSIMPIPE_MERGEVBF_IMAGE/:/_}.sif"
     fi
 
-    batch_size=250
+    batch_size=251
     vbf_id="0"
     MERGEDFILE=$(get_merge_file_name "$WOBBLE" "$NSB" "$vbf_id")
     TMP_FL_LIST="$MERGEVBF_DATA_DIR"/tmp_file_list_${WOBBLE}_${NSB}.dat
