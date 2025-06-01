@@ -4,7 +4,7 @@
 #####################################################################
 # corsikaIOreader command
 #
-# queff = 0.5: 50% of all photons are (randomly) discared.
+# queff = 0.5: 50% of all photons are (randomly) discarded.
 #              This is taken into account in the queff, and
 #              reflectivity part of the simulations.
 # abs:         extinction file for Cherenkov photon scattering

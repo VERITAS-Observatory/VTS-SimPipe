@@ -4,9 +4,9 @@ cff-version: 1.2.0
 message: If you use this software, please cite it using these metadata.
 title: "VTS-SimPipe: simulation tools for the VERITAS observatory"
 doi: 10.5281/zenodo.10541349
-version: 2.0.0
+version: 2.1.1
 type: software
-date-released: 2024-03-12
+date-released: 2024-10-17
 keywords:
 - "gamma-ray astronomy"
 - "astronomy software"
