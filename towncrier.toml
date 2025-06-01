@@ -1,5 +1,5 @@
 [tool.towncrier]
-package = "VTS-SimPipe"
+name = "VTS-SimPipe"
 directory = "docs/changes"
 filename = "CHANGELOG.md"
 underlines = [ "", "", "" ]
