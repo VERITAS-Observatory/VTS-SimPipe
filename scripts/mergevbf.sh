@@ -70,7 +70,7 @@ generate_mergevbf_submission_script()
         echo "find \"$CARE_DATA_DIR\" -type f -name \"*.vbf\" -exec basename {} \; | sed 's|^|/workdir/external/care/|' | sort -n > \"$TMP_FL_LIST\""
         echo
         echo "while read -r file; do"
-        echo "   ${MERGE_EXE} bash -c \"/workdir/VBF/bin/vbfCheck "\$file"\""
+        echo "   ${MERGE_EXE} bash -c \"/workdir/VBF/bin/vbfReindex "\$file"\""
         echo "done < \"$TMP_FL_LIST\""
         echo
         echo "split -d -l $batch_size \"$TMP_FL_LIST\" \"$TMP_FL_SPLIT_LIST\""
@@ -82,9 +82,10 @@ generate_mergevbf_submission_script()
         echo "      continue"
         echo "   fi"
         echo "   MERGEVBF=\"./bin/mergeVBF /workdir/external/mergevbf/\$(basename \"\$flist\")  /workdir/external/mergevbf/\${MERGEDFILE}\${RUNNUMBER}.vbf \${RUNNUMBER}\""
+        echo "   REINDEX=\"/workdir/VBF/bin/vbfReindex /workdir/external/mergevbf/${MERGEDFILE}\${RUNNUMBER}.vbf\""
         echo "   ZSTD_VBF=\"zstd -f /workdir/external/mergevbf/${MERGEDFILE}\${RUNNUMBER}.vbf\""
         echo "   echo \"LOG FILE ${MERGEVBF_DATA_DIR}/${MERGEDFILE}\${RUNNUMBER}.log\""
-        echo "   ${MERGE_EXE} bash -c \"cd /workdir/EventDisplay_v4 && \${MERGEVBF} && \${ZSTD_VBF}\" > ${MERGEVBF_DATA_DIR}/${MERGEDFILE}\"\${RUNNUMBER}\".log 2>&1"
+        echo "   ${MERGE_EXE} bash -c \"cd /workdir/EventDisplay_v4 && \${MERGEVBF} && \${REINDEX} && \${ZSTD_VBF}\" > ${MERGEVBF_DATA_DIR}/${MERGEDFILE}\"\${RUNNUMBER}\".log 2>&1"
         echo
         echo "   [ -e \"${MERGEVBF_DATA_DIR}/${MERGEDFILE}\${RUNNUMBER}.vbf.zst\" ] && rm -f \"${MERGEVBF_DATA_DIR}/${MERGEDFILE}\${RUNNUMBER}.vbf\""
         echo "done"
