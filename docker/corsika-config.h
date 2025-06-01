@@ -130,250 +130,250 @@
 /* RECL parameter */
 #define __BYTERECL__ 1
 
-/* coconut configration cache for option ANAHIST */
+/* coconut configuration cache for option ANAHIST */
 /* #undef __CACHE_ANAHIST__ */
 
-/* coconut configration cache for option ANNITEST */
+/* coconut configuration cache for option ANNITEST */
 /* #undef __CACHE_ANNITEST__ */
 
-/* coconut configration cache for option ATMEXT */
+/* coconut configuration cache for option ATMEXT */
 #define __CACHE_ATMEXT__ /**/
 
-/* coconut configration cache for option AUGCERLONG */
+/* coconut configuration cache for option AUGCERLONG */
 /* #undef __CACHE_AUGCERLONG__ */
 
-/* coconut configration cache for option AUGERHIST */
+/* coconut configuration cache for option AUGERHIST */
 /* #undef __CACHE_AUGERHIST__ */
 
-/* coconut configration cache for option AUGERHIT */
+/* coconut configuration cache for option AUGERHIT */
 /* #undef __CACHE_AUGERHIT__ */
 
-/* coconut configration cache for option AUGERINFO */
+/* coconut configuration cache for option AUGERINFO */
 /* #undef __CACHE_AUGERINFO__ */
 
-/* coconut configration cache for option BAACKC0X */
+/* coconut configuration cache for option BAACKC0X */
 /* #undef __CACHE_BAACKC0X__ */
 
-/* coconut configration cache for option BAACKC11 */
+/* coconut configuration cache for option BAACKC11 */
 /* #undef __CACHE_BAACKC11__ */
 
-/* coconut configration cache for option BAACKC14 */
+/* coconut configuration cache for option BAACKC14 */
 /* #undef __CACHE_BAACKC14__ */
 
-/* coconut configration cache for option BAACKC1Z */
+/* coconut configuration cache for option BAACKC1Z */
 /* #undef __CACHE_BAACKC1Z__ */
 
-/* coconut configration cache for option CEFFIC */
+/* coconut configuration cache for option CEFFIC */
 /* #undef __CACHE_CEFFIC__ */
 
-/* coconut configration cache for option CERENKOV */
+/* coconut configuration cache for option CERENKOV */
 #define __CACHE_CERENKOV__ /**/
 
-/* coconut configration cache for option CERWLEN */
+/* coconut configuration cache for option CERWLEN */
 /* #undef __CACHE_CERWLEN__ */
 
-/* coconut configration cache for option CHARM */
+/* coconut configuration cache for option CHARM */
 /* #undef __CACHE_CHARM__ */
 
-/* coconut configration cache for option COASTUSERLIB */
+/* coconut configuration cache for option COASTUSERLIB */
 /* #undef __CACHE_COASTUSERLIB__ */
 
-/* coconut configration cache for option COAST_LIB */
+/* coconut configuration cache for option COAST_LIB */
 /* #undef __CACHE_COAST_LIB__ */
 
-/* coconut configration cache for option COMPACT */
+/* coconut configuration cache for option COMPACT */
 /* #undef __CACHE_COMPACT__ */
 
-/* coconut configration cache for option CONEX */
+/* coconut configuration cache for option CONEX */
 /* #undef __CACHE_CONEX__ */
 
-/* coconut configration cache for option COREAS */
+/* coconut configuration cache for option COREAS */
 /* #undef __CACHE_COREAS__ */
 
-/* coconut configration cache for option CURVED */
+/* coconut configuration cache for option CURVED */
 /* #undef __CACHE_CURVED__ */
 
-/* coconut configration cache for option DEV */
+/* coconut configuration cache for option DEV */
 /* #undef __CACHE_DEV__ */
 
-/* coconut configration cache for option DIST */
+/* coconut configuration cache for option DIST */
 /* #undef __CACHE_DIST__ */
 
-/* coconut configration cache for option DPMJET */
+/* coconut configuration cache for option DPMJET */
 /* #undef __CACHE_DPMJET__ */
 
-/* coconut configration cache for option DYNCUSTOM */
+/* coconut configuration cache for option DYNCUSTOM */
 /* #undef __CACHE_DYNCUSTOM__ */
 
-/* coconut configration cache for option DYNDEFAULT */
+/* coconut configuration cache for option DYNDEFAULT */
 /* #undef __CACHE_DYNDEFAULT__ */
 
-/* coconut configration cache for option DYNICECUBE */
+/* coconut configuration cache for option DYNICECUBE */
 /* #undef __CACHE_DYNICECUBE__ */
 
-/* coconut configration cache for option DYNOUTPUT */
+/* coconut configuration cache for option DYNOUTPUT */
 /* #undef __CACHE_DYNOUTPUT__ */
 
-/* coconut configration cache for option DYNSTACK */
+/* coconut configuration cache for option DYNSTACK */
 /* #undef __CACHE_DYNSTACK__ */
 
-/* coconut configration cache for option EFIELD */
+/* coconut configuration cache for option EFIELD */
 /* #undef __CACHE_EFIELD__ */
 
-/* coconut configration cache for option EHISTORY */
+/* coconut configuration cache for option EHISTORY */
 /* #undef __CACHE_EHISTORY__ */
 
-/* coconut configration cache for option EPOS */
+/* coconut configuration cache for option EPOS */
 /* #undef __CACHE_EPOS__ */
 
-/* coconut configration cache for option FLUKACERN */
+/* coconut configuration cache for option FLUKACERN */
 /* #undef __CACHE_FLUKACERN__ */
 
-/* coconut configration cache for option FLUKAINFN */
+/* coconut configuration cache for option FLUKAINFN */
 /* #undef __CACHE_FLUKAINFN__ */
 
-/* coconut configration cache for option GHEISHA */
+/* coconut configuration cache for option GHEISHA */
 /* #undef __CACHE_GHEISHA__ */
 
-/* coconut configration cache for option HERWIG */
+/* coconut configuration cache for option HERWIG */
 /* #undef __CACHE_HERWIG__ */
 
-/* coconut configration cache for option HIGHMEM */
+/* coconut configuration cache for option HIGHMEM */
 /* #undef __CACHE_HIGHMEM__ */
 
-/* coconut configration cache for option HORIZONTAL */
+/* coconut configuration cache for option HORIZONTAL */
 /* #undef __CACHE_HORIZONTAL__ */
 
-/* coconut configration cache for option IACTEXT */
+/* coconut configuration cache for option IACTEXT */
 /* #undef __CACHE_IACTEXT__ */
 
-/* coconut configration cache for option IACT */
+/* coconut configuration cache for option IACT */
 #define __CACHE_IACT__ /**/
 
-/* coconut configration cache for option ICECUBE1 */
+/* coconut configuration cache for option ICECUBE1 */
 /* #undef __CACHE_ICECUBE1__ */
 
-/* coconut configration cache for option ICECUBE2 */
+/* coconut configuration cache for option ICECUBE2 */
 /* #undef __CACHE_ICECUBE2__ */
 
-/* coconut configration cache for option INCLINED */
+/* coconut configuration cache for option INCLINED */
 /* #undef __CACHE_INCLINED__ */
 
-/* coconut configration cache for option INTCLONG */
+/* coconut configuration cache for option INTCLONG */
 /* #undef __CACHE_INTCLONG__ */
 
-/* coconut configration cache for option INTTEST */
+/* coconut configuration cache for option INTTEST */
 /* #undef __CACHE_INTTEST__ */
 
-/* coconut configration cache for option KEEPSOURCE */
+/* coconut configuration cache for option KEEPSOURCE */
 #define __CACHE_KEEPSOURCE__ /**/
 
-/* coconut configration cache for option LPM */
+/* coconut configuration cache for option LPM */
 /* #undef __CACHE_LPM__ */
 
-/* coconut configration cache for option M32 */
+/* coconut configuration cache for option M32 */
 /* #undef __CACHE_M32__ */
 
-/* coconut configration cache for option MACHINEINDEPENDENT */
+/* coconut configuration cache for option MACHINEINDEPENDENT */
 /* #undef __CACHE_MACHINEINDEPENDENT__ */
 
-/* coconut configration cache for option MPIRUNNER_LIB */
+/* coconut configuration cache for option MPIRUNNER_LIB */
 /* #undef __CACHE_MPIRUNNER_LIB__ */
 
-/* coconut configration cache for option MULTITHIN */
+/* coconut configuration cache for option MULTITHIN */
 /* #undef __CACHE_MULTITHIN__ */
 
-/* coconut configration cache for option MUONHIST */
+/* coconut configuration cache for option MUONHIST */
 /* #undef __CACHE_MUONHIST__ */
 
-/* coconut configration cache for option MUPROD */
+/* coconut configuration cache for option MUPROD */
 /* #undef __CACHE_MUPROD__ */
 
-/* coconut configration cache for option NEUTRINO */
+/* coconut configuration cache for option NEUTRINO */
 /* #undef __CACHE_NEUTRINO__ */
 
-/* coconut configration cache for option NEXUS */
+/* coconut configuration cache for option NEXUS */
 /* #undef __CACHE_NEXUS__ */
 
-/* coconut configration cache for option NOCLONG */
+/* coconut configuration cache for option NOCLONG */
 /* #undef __CACHE_NOCLONG__ */
 
-/* coconut configration cache for option NOCOMPILE */
+/* coconut configuration cache for option NOCOMPILE */
 /* #undef __CACHE_NOCOMPILE__ */
 
-/* coconut configration cache for option NRREXT */
+/* coconut configuration cache for option NRREXT */
 /* #undef __CACHE_NRREXT__ */
 
-/* coconut configration cache for option OUT32 */
+/* coconut configuration cache for option OUT32 */
 /* #undef __CACHE_OUT32__ */
 
-/* coconut configration cache for option PARALLELIB */
+/* coconut configuration cache for option PARALLELIB */
 /* #undef __CACHE_PARALLELIB__ */
 
-/* coconut configration cache for option PARALLEL */
+/* coconut configuration cache for option PARALLEL */
 /* #undef __CACHE_PARALLEL__ */
 
-/* coconut configration cache for option PLOTSH2 */
+/* coconut configuration cache for option PLOTSH2 */
 /* #undef __CACHE_PLOTSH2__ */
 
-/* coconut configration cache for option PLOTSH */
+/* coconut configuration cache for option PLOTSH */
 /* #undef __CACHE_PLOTSH__ */
 
-/* coconut configration cache for option PRESHOWER */
+/* coconut configuration cache for option PRESHOWER */
 /* #undef __CACHE_PRESHOWER__ */
 
-/* coconut configration cache for option QGSJET01 */
+/* coconut configuration cache for option QGSJET01 */
 /* #undef __CACHE_QGSJET01__ */
 
-/* coconut configration cache for option QGSJETII */
+/* coconut configuration cache for option QGSJETII */
 #define __CACHE_QGSJETII__ /**/
 
-/* coconut configration cache for option REMOTECONTROL */
+/* coconut configuration cache for option REMOTECONTROL */
 /* #undef __CACHE_REMOTECONTROL__ */
 
-/* coconut configration cache for option RIGIDITY */
+/* coconut configuration cache for option RIGIDITY */
 /* #undef __CACHE_RIGIDITY__ */
 
-/* coconut configration cache for option ROOTOUT */
+/* coconut configuration cache for option ROOTOUT */
 /* #undef __CACHE_ROOTOUT__ */
 
-/* coconut configration cache for option SIBYLL */
+/* coconut configuration cache for option SIBYLL */
 /* #undef __CACHE_SIBYLL__ */
 
-/* coconut configration cache for option SLANT */
+/* coconut configuration cache for option SLANT */
 #define __CACHE_SLANT__ /**/
 
-/* coconut configration cache for option STACKIN */
+/* coconut configuration cache for option STACKIN */
 /* #undef __CACHE_STACKIN__ */
 
-/* coconut configration cache for option TAULEP */
+/* coconut configuration cache for option TAULEP */
 /* #undef __CACHE_TAULEP__ */
 
-/* coconut configration cache for option THIN */
+/* coconut configuration cache for option THIN */
 /* #undef __CACHE_THIN__ */
 
-/* coconut configration cache for option TRAJECT */
+/* coconut configuration cache for option TRAJECT */
 /* #undef __CACHE_TRAJECT__ */
 
-/* coconut configration cache for option UPWARDOLD */
+/* coconut configuration cache for option UPWARDOLD */
 /* #undef __CACHE_UPWARDOLD__ */
 
-/* coconut configration cache for option UPWARD */
+/* coconut configuration cache for option UPWARD */
 /* #undef __CACHE_UPWARD__ */
 
-/* coconut configration cache for option URQMD */
+/* coconut configuration cache for option URQMD */
 #define __CACHE_URQMD__ /**/
 
-/* coconut configration cache for option VENUS */
+/* coconut configuration cache for option VENUS */
 /* #undef __CACHE_VENUS__ */
 
-/* coconut configration cache for option VIEWCONE */
+/* coconut configuration cache for option VIEWCONE */
 /* #undef __CACHE_VIEWCONE__ */
 
-/* coconut configration cache for option VOLUMECORR */
+/* coconut configuration cache for option VOLUMECORR */
 /* #undef __CACHE_VOLUMECORR__ */
 
-/* coconut configration cache for option VOLUMEDET */
+/* coconut configuration cache for option VOLUMEDET */
 #define __CACHE_VOLUMEDET__ /**/
 
 /* simulate telescope detector */
@@ -553,7 +553,7 @@
 /* include QGSJET01/QGSJET II program */
 #define __QGSJET__ 1
 
-/* Remote acces to corsika */
+/* Remote access to corsika */
 /* #undef __REMOTECONTROL__ */
 
 /* rigidity */

@@ -34,13 +34,13 @@ No compilation of any of the package is required.
 # clone repository
 git clone https://github.com/VERITAS-Observatory/VTS-SimPipe.git
 cd VTS-SimPipe
-# prepare log files and directories
+# configure environment variables
 cp env_setup_template.sh env_setup.sh
-# edit env_setup.sh to your needs
-# pull all container images from the registry
+# edit env_setup.sh to specify local paths and container runtime (docker/apptainer)
+# download pre-built container images from registry
 cd scripts && ./pull.sh
-# prepare your configuration (e.g. zenith angle, number of events, etc.)
-# see example in config/config_ATM61_template.dat
+# configure simulation parameters (zenith angle, primary particle type, energy range, etc.)
+# see template configuration in config/config_ATM61_template.dat
 # prepare production
 cd scripts
 ./prepare_all_production_steps.sh ../config/config_ATM61_template.dat
@@ -58,7 +58,7 @@ cd scripts
 
 ## Software packages
 
-Following software packages are used by the simulation pipeline and installed in the docker images:
+Following software packages are integrated into the simulation chain via containerized environments:
 
 - [CORSIKA](https://web.ikp.kit.edu/corsika/) for air shower and Cherenkov photon generation
 - [corsikaIOreader](https://github.com/GernotMaier/corsikaIOreader/) for file format conversion and Cherenkov photon absorption and scattering.
@@ -82,7 +82,9 @@ Note that the CI on github will build three different containers for CORSIKA:
 
 1. [vts-simpipe-corsika](https://github.com/VERITAS-Observatory/VTS-SimPipe/pkgs/container/vtsimpipe-corsika) based on [docker/Dockerfile-corsika](docker/Dockerfile-corsika) with the standard CORSIKA software (as used in VERITAS for productions in the past); configuration and compilation using the `coconut` tools.
 2. [vts-simpipe-corsika-noopt](https://github.com/VERITAS-Observatory/VTS-SimPipe/pkgs/container/vtsimpipe-corsika-noopt) based on [docker/Dockerfile-corsika-noopt](docker/Dockerfile-corsika-noopt) using CORSIKA 7.7500 used compile coptions as outlined in the Docker file (in contrast to 1., uses the `O3` flags, but it does not use the vectorization code of 3.)
-3. [vts-simpipe-corsika-ax2](https://github.com/VERITAS-Observatory/VTS-SimPipe/pkgs/container/vtsimpipe-corsika-ax2) based on [docker/Dockerfile-corsika-ax2](docker/Dockerfile-corsika-ax2) using CORSIKA 7.7500 with minor updates to the Bernlohr package (this is the package used for the generation and propagation of Cherenkov photons). A patch is applied to the Cherenkov photon code to allow to use vector instructions and improve runtime performance, see discussions in L. Arrabito et al, *Optimizing Cherenkov photons generation and propagation in CORSIKA for CTA Monte-Carlo simulations*, [arXiv.2006.14927](https://arxiv.org/abs/2006.14927)
+3. [vts-simpipe-corsika-ax2](https://github.com/VERITAS-Observatory/VTS-SimPipe/pkgs/container/vtsimpipe-corsika-ax2) based on [docker/Dockerfile-corsika-ax2](docker/Dockerfile-corsika-ax2) using CORSIKA 7.7500 with minor updates to the Bernlohr package (this is the package used for the generation and propagation of Cherenkov photons). A patch is applied to the Cherenkov photon code to allow to use vector instructions and improve runtime performance, see discussions in L. Arrabito et al, *Optimizing Cherenkov photons generation and propagation in CORSIKA for CTAO Monte-Carlo simulations*, [arXiv.2006.14927](https://arxiv.org/abs/2006.14927)
+
+The use of optimized CORISKA containers requires access to x86_64 architecture with SSE4/AVX2/AVX512 support.
 
 To build the CORSIKA container (similar for all):
 
@@ -298,9 +300,9 @@ SLANT 1
 
 ## Optimization of CORSIKA
 
-The CTA simulation pipeline uses vector-optimization of the Cherenkov photon generation and propagation code in CORSIKA with notable performance improvements, see the discussion in L. Arrabito et al, *Optimizing Cherenkov photons generation and propagation in CORSIKA for CTA Monte-Carlo simulations*, [arXiv.2006.14927](https://arxiv.org/abs/2006.14927).
+The CTAO simulation pipeline uses vector-optimization of the Cherenkov photon generation and propagation code in CORSIKA with notable performance improvements, see the discussion in L. Arrabito et al, *Optimizing Cherenkov photons generation and propagation in CORSIKA for CTAO Monte-Carlo simulations*, [arXiv.2006.14927](https://arxiv.org/abs/2006.14927).
 
-VTS-SimPipe is able to use the same optimized CORSIKA, thanks to for Luisa Arrabito for providing it. Below a comparison of the runtime of the optimized and non-optimized CORSIKA for the same simulation setup:
+VTS-SimPipe is able to use the same optimized CORSIKA, thanks to for L. Arrabito for providing it. Below a comparison of the runtime of the optimized and non-optimized CORSIKA for the same simulation setup:
 
 | Type | CORSIKA version | IACT/ATMO version | Remarks | Run Time [s] / event | Ratio to VTS-SimPipe |
 | -------- | -------- | -------- | -------- | -------- | -------- |
@@ -308,7 +310,7 @@ VTS-SimPipe is able to use the same optimized CORSIKA, thanks to for Luisa Arrab
 | VTS-noopt | 7.7500 | 1.66 (2023-02-03) | no specific optimization (O3; see remarks below); [container](https://github.com/VERITAS-Observatory/VTS-SimPipe/pkgs/container/vtsimpipe-corsika-noopt/182679178?tag=20240223-115829) [docker (noopt arg)](https://github.com/VERITAS-Observatory/VTS-SimPipe/blob/main/docker/Dockerfile-corsika-optimized) | 17.2 | 2.0 |
 | VTS-avx2 | 7.7500 | 1.66 (2023-02-03) | avx2 [container](https://github.com/VERITAS-Observatory/VTS-SimPipe/pkgs/container/vtsimpipe-corsika-avx2/182679269?tag=20240223-115831), [docker (avx2 arg)](https://github.com/VERITAS-Observatory/VTS-SimPipe/blob/main/docker/Dockerfile-corsika-optimized) | 13.42 | 2.5 |
 | VTS-sse4 | 7.7500 | 1.66 (2023-02-03) | sse4 [container](https://github.com/VERITAS-Observatory/VTS-SimPipe/pkgs/container/vtsimpipe-corsika-sse4/182679278?tag=20240223-115831), [docker (sse4 arg)](https://github.com/VERITAS-Observatory/VTS-SimPipe/blob/main/docker/Dockerfile-corsika-optimized) | 12.5 | 2.7 |
-| VTS-avx512f | 7.7500 | 1.66 (2023-02-03) | avx51f [container](https://github.com/VERITAS-Observatory/VTS-SimPipe/pkgs/container/vtsimpipe-corsika-avx512/182679206?tag=20240223-115833), [docker (avx512 arg)](https://github.com/VERITAS-Observatory/VTS-SimPipe/blob/main/docker/Dockerfile-corsika-optimized) | 13.7 | 2.4 |
+| VTS-avx512f | 7.7500 | 1.66 (2023-02-03) | avx512f [container](https://github.com/VERITAS-Observatory/VTS-SimPipe/pkgs/container/vtsimpipe-corsika-avx512/182679206?tag=20240223-115833), [docker (avx512 arg)](https://github.com/VERITAS-Observatory/VTS-SimPipe/blob/main/docker/Dockerfile-corsika-optimized) | 13.7 | 2.4 |
 
 ### Remarks
 

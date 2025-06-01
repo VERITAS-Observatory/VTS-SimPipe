@@ -36,7 +36,7 @@ RUN make clean && rm -f */*.a lib/*/*.a && \
         F77="${GCC_PATH}/gfortran -L/lib64/" \
         CFLAGS="-DCERENKOPT -DVLIBM -std=c99 -O3 -m${AVX_FLAG} -DVECTOR_SIZE=8 -DVECTOR_LENGTH=8" \
         CXXFLAGS="-DCERENKOPT -DVLIBM -std=c99 -O3 -m${AVX_FLAG} -DVECTOR_SIZE=8 -DVECTOR_LENGTH=8" \
-        # Note: different to CTA - no change in avx options for Fortran
+        # Note: different to CTAO - no change in avx options for Fortran
         # FFLAGS="-ffixed-line-length-132 -fno-automatic -frecord-marker=4 -std=legacy -DCERENKOPT -DVLIBM -std=c99 -O3 -m${AVX_FLAG} -DVECTOR_SIZE=8 -DVECTOR_LENGTH=8" \
         FFLAGS="-ffixed-line-length-132 -fno-automatic -frecord-marker=4 -std=legacy -std=c99 -O3 -mavx2" \
         install; \
