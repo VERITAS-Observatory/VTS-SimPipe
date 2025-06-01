@@ -310,7 +310,7 @@ VTS-SimPipe is able to use the same optimized CORSIKA, thanks to for Luisa Arrab
 | VTS-noopt | 7.7500 | 1.66 (2023-02-03) | no specific optimization (O3; see remarks below); [container](https://github.com/VERITAS-Observatory/VTS-SimPipe/pkgs/container/vtsimpipe-corsika-noopt/182679178?tag=20240223-115829) [docker (noopt arg)](https://github.com/VERITAS-Observatory/VTS-SimPipe/blob/main/docker/Dockerfile-corsika-optimized) | 17.2 | 2.0 |
 | VTS-avx2 | 7.7500 | 1.66 (2023-02-03) | avx2 [container](https://github.com/VERITAS-Observatory/VTS-SimPipe/pkgs/container/vtsimpipe-corsika-avx2/182679269?tag=20240223-115831), [docker (avx2 arg)](https://github.com/VERITAS-Observatory/VTS-SimPipe/blob/main/docker/Dockerfile-corsika-optimized) | 13.42 | 2.5 |
 | VTS-sse4 | 7.7500 | 1.66 (2023-02-03) | sse4 [container](https://github.com/VERITAS-Observatory/VTS-SimPipe/pkgs/container/vtsimpipe-corsika-sse4/182679278?tag=20240223-115831), [docker (sse4 arg)](https://github.com/VERITAS-Observatory/VTS-SimPipe/blob/main/docker/Dockerfile-corsika-optimized) | 12.5 | 2.7 |
-| VTS-avx512f | 7.7500 | 1.66 (2023-02-03) | avx51f [container](https://github.com/VERITAS-Observatory/VTS-SimPipe/pkgs/container/vtsimpipe-corsika-avx512/182679206?tag=20240223-115833), [docker (avx512 arg)](https://github.com/VERITAS-Observatory/VTS-SimPipe/blob/main/docker/Dockerfile-corsika-optimized) | 13.7 | 2.4 |
+| VTS-avx512f | 7.7500 | 1.66 (2023-02-03) | avx512f [container](https://github.com/VERITAS-Observatory/VTS-SimPipe/pkgs/container/vtsimpipe-corsika-avx512/182679206?tag=20240223-115833), [docker (avx512 arg)](https://github.com/VERITAS-Observatory/VTS-SimPipe/blob/main/docker/Dockerfile-corsika-optimized) | 13.7 | 2.4 |
 
 ### Remarks
 
