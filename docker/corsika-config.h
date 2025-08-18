@@ -368,7 +368,7 @@
 /* #undef __CACHE_VENUS__ */
 
 /* coconut configuration cache for option VIEWCONE */
-/* #undef __CACHE_VIEWCONE__ */
+#define __CACHE_VIEWCONE__ /**/
 
 /* coconut configuration cache for option VOLUMECORR */
 /* #undef __CACHE_VOLUMECORR__ */
@@ -602,7 +602,7 @@
 /* #undef __VENUS__ */
 
 /* viewcone */
-/* #undef __VIEWCONE__ */
+#define __VIEWCONE__ 1
 
 /* detector geometry (vertical string) */
 /* #undef __VOLUMECORR__ */
