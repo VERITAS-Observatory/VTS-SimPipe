@@ -344,7 +344,7 @@
 /* #undef __CACHE_SIBYLL__ */
 
 /* coconut configuration cache for option SLANT */
-/* #undef __CACHE_SLANT__ */
+#define __CACHE_SLANT__ /**/
 
 /* coconut configuration cache for option STACKIN */
 /* #undef __CACHE_STACKIN__ */
@@ -575,7 +575,7 @@
 /* #undef __SIBYLL__ */
 
 /* slant profile */
-/* #undef __SLANT__ */
+#define __SLANT__ 1
 
 /* stack input */
 /* #undef __STACKIN__ */
