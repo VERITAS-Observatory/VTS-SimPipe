@@ -27,6 +27,13 @@ jobs:
       matrix:
         type: ['noopt', 'avx2', 'avx512f', 'sse4']
         atmosphere: ['flat', 'curved']
+        exclude:
+          - type: avx2
+            atmosphere: curved
+          - type: avx512f
+            atmosphere: curved
+          - type: sse4
+            atmosphere: curved
 
     steps:
       - name: Checkout repository
