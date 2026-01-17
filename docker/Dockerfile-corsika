@@ -2,6 +2,8 @@ ARG ATMOSPHERE=flat
 ARG CORSIKA=77500
 
 FROM almalinux:9.3 AS build_image
+ARG ATMOSPHERE
+ARG CORSIKA
 WORKDIR /workdir
 
 RUN yum update -y && yum install -y \
@@ -22,6 +24,8 @@ SHELL ["/bin/bash", "-c"]
 WORKDIR /workdir/
 
 FROM almalinux:9.3-minimal
+ARG ATMOSPHERE
+ARG CORSIKA
 LABEL maintainer.name="VERITAS Collaboration"
 LABEL maintainer.email="gernot.maier@desy.de"
 LABEL org.opencontainers.image.source="https://github.com/VERITAS-Observatory/VTS-SimPipe"
