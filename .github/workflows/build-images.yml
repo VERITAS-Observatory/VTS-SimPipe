@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   pull_request:
     paths:
-      - './docker/'
+      - './docker/**'
   push:
     branches:
       - main
@@ -15,7 +15,6 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
 
@@ -32,28 +31,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
-
       - name: download CORSIKA package (standard)
         if: matrix.type == 'corsika'
         run: |
           wget --no-verbose https://syncandshare.desy.de/index.php/s/${{ secrets.CLOUD_CORSIKA }}/download
           mv download corsika-77500.tar.gz
-
-      - name: download CORSIKA package (non-optimised version)
-        if: matrix.type == 'corsika-noopt'
-        run: |
-          wget --no-verbose https://syncandshare.desy.de/index.php/s/${{ secrets.CLOUD_CORSIKA_CTA }}/download
-          mv download corsika-77500.tar.gz
-
-      - name: download CORSIKA package (optimised version)
-        if: matrix.type == 'corsika-ax2'
-        run: |
-          wget --no-verbose https://syncandshare.desy.de/index.php/s/${{ secrets.CLOUD_CORSIKA_CTA }}/download
-          mv download corsika-77500.tar.gz
-          wget --no-verbose https://syncandshare.desy.de/index.php/s/${{ secrets.CLOUD_CORSIKA_OPT }}/download
-          mv download corsikaOptPatch-77500_2024-02-05.tar.gz
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -86,4 +68,4 @@ jobs:
             ${{ github.event_name == 'release' || github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/main' }}
           file: ./docker/Dockerfile-${{ matrix.type }}
           tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}-vtssimpipe-${{ matrix.type }}
+          labels: ${{ steps.meta.outputs.labels }}

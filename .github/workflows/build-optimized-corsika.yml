@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   pull_request:
     paths:
-      - './docker/'
+      - './docker/**'
   push:
     branches:
       - main
@@ -15,7 +15,6 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
 
@@ -26,21 +25,19 @@ jobs:
       packages: write
     strategy:
       matrix:
-        type: ['noopt', 'avx2', 'avx512f', 'avx', 'sse4']
+        type: ['noopt', 'avx2', 'avx512f', 'sse4']
+        atmosphere: ['flat', 'curved']
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
 
-      - name: download CORSIKA package (optimised version)
+      - name: download CORSIKA package (optimized version)
         run: |
           wget --no-verbose https://syncandshare.desy.de/index.php/s/${{ secrets.CLOUD_CORSIKA_CTA }}/download
           mv download corsika-77500.tar.gz
           wget --no-verbose https://syncandshare.desy.de/index.php/s/${{ secrets.CLOUD_CORSIKA_OPT }}/download
           mv download corsikaOptPatch-77500_2024-02-05.tar.gz
-      - name: Set up QEMU
-
-        uses: docker/setup-qemu-action@v3
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -61,17 +58,19 @@ jobs:
             type=semver,pattern={{major}}.{{minor}}.{{patch}}
             type=schedule,pattern={{date 'YYYYMMDD'}}
             type=raw,value={{date 'YYYYMMDD-HHmmss'}}
-          images: ${{ env.REGISTRY }}/VERITAS-Observatory/vtsimpipe-corsika-${{ matrix.type }}
-          flavor: latest=true
+          images: ${{ env.REGISTRY }}/VERITAS-Observatory/vtsimpipe-corsika-${{ matrix.atmosphere }}-${{ matrix.type }}
+          flavor: latest=false
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v6
         with:
           context: .
           platforms: linux/amd64
-          build-args: AVX_FLAG=${{ matrix.type }}
+          build-args: |
+            AVX_FLAG=${{ matrix.type }}
+            ATMOSPHERE=${{ matrix.atmosphere }}
           push:
             ${{ github.event_name == 'release' || github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/main' }}
           file: ./docker/Dockerfile-corsika-optimized
           tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}-vtssimpipe-corsika-${{ matrix.type }}
+          labels: ${{ steps.meta.outputs.labels }}

@@ -1,7 +1,9 @@
+ARG AVX_FLAG=avx2
+ARG ATMOSPHERE=flat
+ARG CORSIKA=77500
+
 FROM almalinux:9.3 AS build_image
 WORKDIR /workdir
-ENV DEBIAN_FRONTEND=noninteractive
-ARG AVX_FLAG=avx2
 
 RUN yum update -y && yum install -y \
     autoconf \
@@ -14,21 +16,21 @@ RUN yum update -y && yum install -y \
     patch &&  \
     yum clean all
 
-ADD corsika-77500.tar.gz .
-RUN cd ./corsika-77500/bernlohr && tar -xvzf bernlohr-1.66.tar.gz
-ADD corsikaOptPatch-77500_2024-02-05.tar.gz ./corsika-77500
-RUN if [ "$AVX_FLAG" != "noopt" ]; then \
-        cd ./corsika-77500 && ./corsika_opt_patching.sh && autoreconf; \
+ADD corsika-${CORSIKA}.tar.gz .
+RUN cd ./corsika-${CORSIKA}/bernlohr && tar -xvzf bernlohr-1.66.tar.gz
+ADD corsikaOptPatch-${CORSIKA}_2024-02-05.tar.gz ./corsika-${CORSIKA}
+RUN if [ "$AVX_FLAG" != "noopt" ] || [ "$ATMOSPHERE" = "curved" ]; then \
+        cd ./corsika-${CORSIKA} && ./corsika_opt_patching.sh && autoreconf; \
     fi
 # CORSIKA compile options derived with coconut
-COPY ./docker/corsika-config-optimized.h corsika-77500/include/config.h
+COPY ./docker/corsika-config-optimized-$ATMOSPHERE.h corsika-${CORSIKA}/include/config.h
 #
 # build corsika
-WORKDIR /workdir/corsika-77500
+WORKDIR /workdir/corsika-${CORSIKA}
 RUN ./coconut < /dev/null
 ENV GCC_PATH="/usr/bin/"
 RUN make clean && rm -f */*.a lib/*/*.a && \
-    if [ "$AVX_FLAG" != "noopt" ]; then \
+    if [ "$AVX_FLAG" != "noopt" ] || [ "$ATMOSPHERE" = "curved" ]; then \
         make \
         CC="${GCC_PATH}/gcc -static" \
         CXX="${GCC_PATH}/g++ -static" \
@@ -51,8 +53,8 @@ RUN make clean && rm -f */*.a lib/*/*.a && \
         FFLAGS="-ffixed-line-length-132 -fno-automatic -frecord-marker=4 -std=legacy -std=c99 -O3 -mavx2" \
         install; \
     fi
-RUN if [ "$AVX_FLAG" != "noopt" ]; then \
-        mv run/corsika77500Linux_QGSII_urqmdceropt run/corsika77500Linux_QGSII_urqmd; \
+RUN if [ "$AVX_FLAG" != "noopt" ] || [ "$ATMOSPHERE" = "curved" ]; then \
+        mv run/corsika${CORSIKA}Linux_QGSII_urqmdceropt run/corsika${CORSIKA}Linux_QGSII_urqmd; \
     fi
 
 SHELL ["/bin/bash", "-c"]
@@ -62,12 +64,11 @@ FROM almalinux:9.3-minimal
 LABEL maintainer.name="VERITAS Collaboration"
 LABEL maintainer.email="gernot.maier@desy.de"
 LABEL org.opencontainers.image.source="https://github.com/VERITAS-Observatory/VTS-SimPipe"
-LABEL org.opencontainers.image.description="CORSIKA 7.7500 (optimized version) as used for the VERITAS simulation pipeline."
+LABEL org.opencontainers.image.description="CORSIKA ${CORSIKA} (optimized version) as used for the VERITAS simulation pipeline. Atmosphere: ${ATMOSPHERE}"
 LABEL org.opencontainers.image.licenses="BSD-3-Clause"
 WORKDIR /workdir
 ENV DEBIAN_FRONTEND=noninteractive
-ARG CORSIKA=corsika-77500
-COPY --from=build_image /workdir/corsika-77500/run /workdir/corsika-run
+COPY --from=build_image /workdir/corsika-${CORSIKA}/run /workdir/corsika-run
 
 RUN microdnf update -y && microdnf install -y \
     gcc-fortran && \
