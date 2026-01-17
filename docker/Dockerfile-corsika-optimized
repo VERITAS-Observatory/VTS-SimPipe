@@ -22,7 +22,7 @@ RUN yum update -y && yum install -y \
 ADD corsika-${CORSIKA}.tar.gz .
 RUN cd ./corsika-${CORSIKA}/bernlohr && tar -xvzf bernlohr-1.66.tar.gz
 ADD corsikaOptPatch-${CORSIKA}_2024-02-05.tar.gz ./corsika-${CORSIKA}
-RUN if [ "$AVX_FLAG" != "noopt" ] || [ "$ATMOSPHERE" = "curved" ]; then \
+RUN if [ "$AVX_FLAG" != "noopt" ] && [ "$ATMOSPHERE" != "curved" ]; then \
         cd ./corsika-${CORSIKA} && ./corsika_opt_patching.sh && autoreconf; \
     fi
 # CORSIKA compile options derived with coconut
@@ -33,7 +33,7 @@ WORKDIR /workdir/corsika-${CORSIKA}
 RUN ./coconut < /dev/null
 ENV GCC_PATH="/usr/bin/"
 RUN make clean && rm -f */*.a lib/*/*.a && \
-    if [ "$AVX_FLAG" != "noopt" ] || [ "$ATMOSPHERE" = "curved" ]; then \
+    if [ "$AVX_FLAG" != "noopt" ] && [ "$ATMOSPHERE" != "curved" ]; then \
         make \
         CC="${GCC_PATH}/gcc -static" \
         CXX="${GCC_PATH}/g++ -static" \
@@ -56,7 +56,7 @@ RUN make clean && rm -f */*.a lib/*/*.a && \
         FFLAGS="-ffixed-line-length-132 -fno-automatic -frecord-marker=4 -std=legacy -std=c99 -O3 -mavx2" \
         install; \
     fi
-RUN if [ "$AVX_FLAG" != "noopt" ] || [ "$ATMOSPHERE" = "curved" ]; then \
+RUN if [ "$AVX_FLAG" != "noopt" ] && [ "$ATMOSPHERE" != "curved" ]; then \
         mv run/corsika${CORSIKA}Linux_QGSII_urqmdceropt run/corsika${CORSIKA}Linux_QGSII_urqmd; \
     fi
 
