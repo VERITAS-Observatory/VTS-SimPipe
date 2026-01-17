@@ -26,8 +26,8 @@ RUN if [ "$AVX_FLAG" != "noopt" ] || [ "$ATMOSPHERE" = "curved" ]; then \
         cd ./corsika-${CORSIKA} && ./corsika_opt_patching.sh && autoreconf; \
     fi
 # CORSIKA compile options derived with coconut
-COPY ./docker/corsika-config-optimized-$ATMOSPHERE.h corsika-${CORSIKA}/include/config.h
-#
+COPY ./docker/corsika-config-${ATMOSPHERE}-optimized.h corsika-${CORSIKA}/include/config.h
+
 # build corsika
 WORKDIR /workdir/corsika-${CORSIKA}
 RUN ./coconut < /dev/null
