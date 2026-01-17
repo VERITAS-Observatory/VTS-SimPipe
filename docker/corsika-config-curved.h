@@ -505,7 +505,7 @@
 /* include neXus 3.97 program */
 /* #undef __NEXUS__ */
 
-/* no cherenkov longitudinla profile */
+/* no cherenkov longitudinal profile */
 /* #undef __NOCLONG__ */
 
 /* do not compile binaries, just extract CORSIKA compilefile */
