@@ -25,10 +25,10 @@ This work is built on a large effort from many people, especially:
 - Tony Lin for a Docker implementation of the pipeline (see [here](https://github.com/VERITAS-Observatory/Build_SimDockerImage/tree/master))
 - Luisa Arrabito and Orel Gueta on providing the optimized CORSIKA code and help with compilation issues.
 
-## Quick startup
+## Quick Start
 
-The following is all what you need to know to install and run the simulation pipeline.
-No compilation of any of the package is required.
+The following is all you need to know to install and run the simulation pipeline.
+No compilation of any package is required.
 
 ```bash
 # clone repository
@@ -75,16 +75,16 @@ For software versions, see the [docker files](docker/Dockerfile) and the [releas
 The simulation pipeline is configured to run in Docker/Apptainer containers.
 Images can be downloaded from the package registry of this repository.
 
-### CORSIKA containers
+### CORSIKA Containers
 
-Requires the tar package with the CORSIKA tar software to be available in the main directory of `VTSSimPipe`.
-Note that the CI on github will build three different containers for CORSIKA:
+Requires the CORSIKA tar package to be available in the main directory of `VTS-SimPipe`.
+Note that the CI on GitHub builds three different containers for CORSIKA:
 
-1. [vts-simpipe-corsika](https://github.com/VERITAS-Observatory/VTS-SimPipe/pkgs/container/vtsimpipe-corsika) based on [docker/Dockerfile-corsika](docker/Dockerfile-corsika) with the standard CORSIKA software (as used in VERITAS for productions in the past); configuration and compilation using the `coconut` tools.
-2. [vts-simpipe-corsika-noopt](https://github.com/VERITAS-Observatory/VTS-SimPipe/pkgs/container/vtsimpipe-corsika-noopt) based on [docker/Dockerfile-corsika-noopt](docker/Dockerfile-corsika-noopt) using CORSIKA 7.7500 used compile coptions as outlined in the Docker file (in contrast to 1., uses the `O3` flags, but it does not use the vectorization code of 3.)
-3. [vts-simpipe-corsika-ax2](https://github.com/VERITAS-Observatory/VTS-SimPipe/pkgs/container/vtsimpipe-corsika-ax2) based on [docker/Dockerfile-corsika-ax2](docker/Dockerfile-corsika-ax2) using CORSIKA 7.7500 with minor updates to the Bernlohr package (this is the package used for the generation and propagation of Cherenkov photons). A patch is applied to the Cherenkov photon code to allow to use vector instructions and improve runtime performance, see discussions in L. Arrabito et al, *Optimizing Cherenkov photons generation and propagation in CORSIKA for CTAO Monte-Carlo simulations*, [arXiv.2006.14927](https://arxiv.org/abs/2006.14927)
+1. [vts-simpipe-corsika](https://github.com/VERITAS-Observatory/VTS-SimPipe/pkgs/container/vtsimpipe-corsika) based on [docker/Dockerfile-corsika](docker/Dockerfile-corsika) with the standard CORSIKA software (as used in VERITAS for past productions); configuration and compilation using the `coconut` tools.
+2. [vts-simpipe-corsika-noopt](https://github.com/VERITAS-Observatory/VTS-SimPipe/pkgs/container/vtsimpipe-corsika-noopt) based on [docker/Dockerfile-corsika-noopt](docker/Dockerfile-corsika-noopt) using CORSIKA 7.7500 with compile options as outlined in the Dockerfile (in contrast to 1., uses the `O3` flags, but does not use the vectorization code of 3.).
+3. [vts-simpipe-corsika-avx2](https://github.com/VERITAS-Observatory/VTS-SimPipe/pkgs/container/vtsimpipe-corsika-ax2) based on [docker/Dockerfile-corsika-ax2](docker/Dockerfile-corsika-ax2) using CORSIKA 7.7500 with minor updates to the Bernlohr package (used for generation and propagation of Cherenkov photons). A patch is applied to the Cherenkov photon code to enable vector instructions and improve runtime performance, see L. Arrabito et al., *Optimizing Cherenkov photons generation and propagation in CORSIKA for CTAO Monte-Carlo simulations*, [arXiv:2006.14927](https://arxiv.org/abs/2006.14927).
 
-The use of optimized CORISKA containers requires access to x86_64 architecture with SSE4/AVX2/AVX512 support.
+The use of optimized CORSIKA containers requires access to x86_64 architecture with SSE4/AVX2/AVX512 support.
 
 To build the CORSIKA container (similar for all):
 
@@ -107,7 +107,7 @@ selection: BERNLOHRDIR SLANT CERENKOV IACT IACTDIR ATMEXT
 
 The file [docker/corsika-config.h](docker/corsika-config.h) contains the configuration file for CORSIKA and is used for the compilation ([docker/corsika-config-ax2.h](docker/corsika-config-ax2.h) for the `vts-simpipe-corsika-noopt` and `vts-simpipe-corsika-axi2` options).
 
-### GrOptics and corsikaIOreader containers
+### GrOptics and corsikaIOreader Containers
 
 GrOptics requires C++11 for compilation, therefore the `root:6.24.06-centos7` is used as base image.
 
@@ -118,7 +118,7 @@ docker run --rm -it -v "$(pwd):/workdir/external" vts-simpipe-groptics bash
 
 Note that at this point a fork of GrOptics is used, fixing an issue to allow compiling on cent os7 (see [fork here](https://github.com/GernotMaier/GrOptics)).
 
-### CARE containers
+### CARE Containers
 
 The same base image for CARE is used as for GrOptics, including VBF and ROOT.
 
@@ -127,7 +127,7 @@ docker build -f ./docker/Dockerfile-care -t vts-simpipe-care .
 docker run --rm -it -v "$(pwd):/workdir/external" vts-simpipe-care bash
 ```
 
-### mergeVBF containers
+### mergeVBF Containers
 
 The tiny tool mergeVBF is actual part of the Eventdisplay software.
 The same base image for mergeVBF is used as for CARE, including VBF and ROOT.
@@ -159,7 +159,7 @@ The CORSIKA air-shower simulations require as environmental variables:
 
 The script to run the CORSIKA simulations is [scripts/run_corsika.sh](scripts/run_corsika.sh), configuration parameters are
 defined as in the template [config/CORSIKA/config_template.dat](config/CORSIKA/config_template.dat).
-Note that no changes are expected to be necessary for the input steering template [config/CORISKA/input_template.dat](config/CORISKA/input_template.dat).
+Note that no changes are expected to be necessary for the input steering template [config/CORSIKA/input_template.dat](config/CORSIKA/input_template.dat).
 
 The configuration script [scripts/config_corsika.sh](scripts/config_corsika.sh) takes into account the zenith-angle dependent changes of energy thresholds and core scatter areas. It is recommended to cross check these values.
 
@@ -206,8 +206,8 @@ The simulation scripts are configured to use Apptainers with the correct paramet
 
 Note:
 
-- recommend to set `$APPTAINER_CACHEDIR` to a reasonable directory with sufficient disk space, as cluster jobs will use this directory to store the container images.
-- set `$VTSSIMPIPE_CONTAINER_DIR` to the directory where the container images are stored. This should be a "fast" disk, as each job will access the image files.
+- Recommend setting `$APPTAINER_CACHEDIR` to a directory with sufficient disk space, as cluster jobs will use this directory to store the container images.
+- Set `$VTSSIMPIPE_CONTAINER_DIR` to the directory where the container images are stored. This should be a "fast" disk, as each job will access the image files.
 
 ## Submitting jobs
 
@@ -222,7 +222,7 @@ To submit jobs, use the `submit_jobs_to_htcondor.sh` script:
 
 This will submit all jobs in the directory to the HT Condor system.
 
-For efficiency reason, it is recommended to submit jobs using the DAG submission system (see [HTCondor DAGMan](https://htcondor.readthedocs.io/en/latest/automated-workflows/index.html)). This allows to run CORSIKA, followed by GrOptics, CARE, and the merging of the VBF files in a single job submission.
+For efficiency reasons, it is recommended to submit jobs using the DAG submission system (see [HTCondor DAGMan](https://htcondor.readthedocs.io/en/latest/automated-workflows/index.html)). This allows running CORSIKA, followed by GrOptics, CARE, and the merging of the VBF files in a single job submission.
 
 To generate DAG files for the job submission:
 
@@ -302,7 +302,7 @@ SLANT 1
 
 The CTAO simulation pipeline uses vector-optimization of the Cherenkov photon generation and propagation code in CORSIKA with notable performance improvements, see the discussion in L. Arrabito et al, *Optimizing Cherenkov photons generation and propagation in CORSIKA for CTAO Monte-Carlo simulations*, [arXiv.2006.14927](https://arxiv.org/abs/2006.14927).
 
-VTS-SimPipe is able to use the same optimized CORSIKA, thanks to for L. Arrabito for providing it. Below a comparison of the runtime of the optimized and non-optimized CORSIKA for the same simulation setup:
+VTS-SimPipe can use the same optimized CORSIKA, thanks to L. Arrabito for providing it. Below is a comparison of the runtime of the optimized and non-optimized CORSIKA for the same simulation setup:
 
 | Type | CORSIKA version | IACT/ATMO version | Remarks | Run Time [s] / event | Ratio to VTS-SimPipe |
 | -------- | -------- | -------- | -------- | -------- | -------- |
