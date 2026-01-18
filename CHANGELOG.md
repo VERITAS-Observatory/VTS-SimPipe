@@ -13,7 +13,7 @@ This changelog is generated using [Towncrier](https://towncrier.readthedocs.io/)
 
 ### API Changes
 
-- Change of CORSIKA images including now the geometry of the atmosphere (curved vs flat). This requires users to update their local CORSIKA images. ([#59](https://github.com/VERITAS-Observatory/VTS-SimPipe/issues/60))
+- Change of CORSIKA images including now the geometry of the atmosphere (curved vs flat). This requires users to update their local CORSIKA images. ([#60](https://github.com/VERITAS-Observatory/VTS-SimPipe/issues/60))
 
 ### Bugfixes
 
