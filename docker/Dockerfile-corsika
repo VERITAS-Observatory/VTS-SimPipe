@@ -1,7 +1,10 @@
+ARG ATMOSPHERE=flat
+ARG CORSIKA=77500
+
 FROM almalinux:9.3 AS build_image
+ARG ATMOSPHERE
+ARG CORSIKA
 WORKDIR /workdir
-ENV DEBIAN_FRONTEND=noninteractive
-ARG CORSIKA=corsika-77500
 
 RUN yum update -y && yum install -y \
     csh \
@@ -9,27 +12,28 @@ RUN yum update -y && yum install -y \
     gcc-fortran && \
     yum clean all
 
-ADD $CORSIKA.tar.gz .
+ADD corsika-${CORSIKA}.tar.gz .
 # CORSIKA compile options derived with coconut
-COPY ./docker/corsika-config.h $CORSIKA/include/config.h
+COPY ./docker/corsika-config-$ATMOSPHERE.h corsika-${CORSIKA}/include/config.h
 
 # build corsika
-WORKDIR $CORSIKA
+WORKDIR /workdir/corsika-${CORSIKA}
 RUN ./coconut < /dev/null
 
 SHELL ["/bin/bash", "-c"]
 WORKDIR /workdir/
 
 FROM almalinux:9.3-minimal
+ARG ATMOSPHERE
+ARG CORSIKA
 LABEL maintainer.name="VERITAS Collaboration"
 LABEL maintainer.email="gernot.maier@desy.de"
 LABEL org.opencontainers.image.source="https://github.com/VERITAS-Observatory/VTS-SimPipe"
-LABEL org.opencontainers.image.description="CORSIKA 7.7500 (non-optimized version) as used for the VERITAS simulation pipeline."
+LABEL org.opencontainers.image.description="CORSIKA ${CORSIKA} (non-optimized version) as used for the VERITAS simulation pipeline. Atmosphere: ${ATMOSPHERE}"
 LABEL org.opencontainers.image.licenses="BSD-3-Clause"
 WORKDIR /workdir
 ENV DEBIAN_FRONTEND=noninteractive
-ARG CORSIKA=corsika-77500
-COPY --from=build_image /workdir/$CORSIKA/run /workdir/corsika-run
+COPY --from=build_image /workdir/corsika-${CORSIKA}/run /workdir/corsika-run
 
 RUN microdnf update -y && microdnf install -y \
     gcc-fortran && \

@@ -28,8 +28,6 @@ ENV PATH ${VBFSYS}/bin:${PATH}
 
 # CARE
 WORKDIR /workdir/
-# RUN git clone https://github.com/nepomukotte/CARE --depth 1
-# WORKDIR /workdir/CARE
 ADD https://github.com/nepomukotte/CARE/archive/refs/tags/v$CARE_VERSION.tar.gz /workdir/
 RUN mkdir CARE && tar -xzf v$CARE_VERSION.tar.gz -C CARE --strip-components=1 && \
     cd CARE && \

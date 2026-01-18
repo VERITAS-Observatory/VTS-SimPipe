@@ -7,6 +7,9 @@
 /* Define to 1 if BERNLOHR can be compiled on the system */
 #define HAVE_BERNLOHR 1
 
+/* Define to 1 if CERENKOPT can be compiled on the system */
+#define HAVE_CERENKOPT 1
+
 /* Define to 1 if CERNLIB is available on the system */
 /* #undef HAVE_CERNLIB */
 
@@ -34,9 +37,6 @@
 /* Define to 1 if you have the <memory.h> header file. */
 #define HAVE_MEMORY_H 1
 
-/* Define to 1 if Mpirunner is available on the system */
-/* #undef HAVE_MPIRUNNER_LIB */
-
 /* Define to 1 if PYTHIA is available on the system */
 /* #undef HAVE_PYTHIA */
 
@@ -63,6 +63,9 @@
 
 /* Define to 1 if you have the <unistd.h> header file. */
 #define HAVE_UNISTD_H 1
+
+/* Define to 1 if VLIBM can be compiled on the system */
+#define HAVE_VLIBM 1
 
 /* Define to 1 if you have the file `/etc/issue'. */
 /* #undef HAVE__ETC_ISSUE */
@@ -166,6 +169,9 @@
 /* coconut configuration cache for option CEFFIC */
 /* #undef __CACHE_CEFFIC__ */
 
+/* coconut configuration cache for option CERENKOPT */
+#define __CACHE_CERENKOPT__ /**/
+
 /* coconut configuration cache for option CERENKOV */
 #define __CACHE_CERENKOV__ /**/
 
@@ -191,7 +197,7 @@
 /* #undef __CACHE_COREAS__ */
 
 /* coconut configuration cache for option CURVED */
-/* #undef __CACHE_CURVED__ */
+#define __CACHE_CURVED__
 
 /* coconut configuration cache for option DEV */
 /* #undef __CACHE_DEV__ */
@@ -266,7 +272,7 @@
 /* #undef __CACHE_INTTEST__ */
 
 /* coconut configuration cache for option KEEPSOURCE */
-#define __CACHE_KEEPSOURCE__ /**/
+/* #undef __CACHE_KEEPSOURCE__ */
 
 /* coconut configuration cache for option LPM */
 /* #undef __CACHE_LPM__ */
@@ -276,9 +282,6 @@
 
 /* coconut configuration cache for option MACHINEINDEPENDENT */
 /* #undef __CACHE_MACHINEINDEPENDENT__ */
-
-/* coconut configuration cache for option MPIRUNNER_LIB */
-/* #undef __CACHE_MPIRUNNER_LIB__ */
 
 /* coconut configuration cache for option MULTITHIN */
 /* #undef __CACHE_MULTITHIN__ */
@@ -370,6 +373,9 @@
 /* coconut configuration cache for option VIEWCONE */
 #define __CACHE_VIEWCONE__ /**/
 
+/* coconut configuration cache for option VLIBM */
+#define __CACHE_VLIBM__ /**/
+
 /* coconut configuration cache for option VOLUMECORR */
 /* #undef __CACHE_VOLUMECORR__ */
 
@@ -378,6 +384,9 @@
 
 /* simulate telescope detector */
 /* #undef __CEFFIC__ */
+
+/* for Cherenkov telescope detector optimizations */
+#define __CERENKOPT__ 1
 
 /* for Cherenkov grid detector */
 #define __CERENKOV__ 1
@@ -401,7 +410,7 @@
 /* #undef __CONEX__ */
 
 /* curved atmosphere */
-/* #undef __CURVED__ */
+#define __CURVED__ 1
 
 /* to compile without optimisation and system flags */
 /* #undef __DEV__ */
@@ -505,7 +514,7 @@
 /* include neXus 3.97 program */
 /* #undef __NEXUS__ */
 
-/* no cherenkov longitudinla profile */
+/* no cherenkov longitudinal profile */
 /* #undef __NOCLONG__ */
 
 /* do not compile binaries, just extract CORSIKA compilefile */
@@ -603,6 +612,9 @@
 
 /* viewcone */
 #define __VIEWCONE__ 1
+
+/* for Vectorized libm optimizations */
+#define __VLIBM__ 1
 
 /* detector geometry (vertical string) */
 /* #undef __VOLUMECORR__ */
