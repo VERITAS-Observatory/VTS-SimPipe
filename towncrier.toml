@@ -22,3 +22,7 @@ showcontent = true
 [tool.towncrier.fragment.doc]
 name = "Documentation"
 showcontent = true
+
+[tool.towncrier.fragment.api]
+name = "API Changes"
+showcontent = true
